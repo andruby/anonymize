@@ -14,14 +14,14 @@ module Anonymize
       Anonymize::SQL.run!(connection, options, self.definition)
     end
 
-    def table(table_name, &block)
+    def table(table_name, options = {}, &block)
       @table_name = table_name
-      self.definition[@table_name] = {}
+      self.definition[@table_name] = {columns: {}, options: options}
       class_eval &block
     end
 
     def column(column_name, &block)
-      self.definition[@table_name][column_name] = block
+      self.definition[@table_name][:columns][column_name] = block
     end
   end
 end

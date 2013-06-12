@@ -14,13 +14,14 @@ class Anonymize::SQL
   def run!
     total_count = @definition.count
     counter = 0
-    @definition.each do |table, columns|
-      puts "(#{counter+=1}/#{total_count}) Anonymizing columns #{columns.keys.inspect} from table '#{table}'"
-      process_table(table, columns)
+    @definition.each do |table, data|
+      puts "(#{counter+=1}/#{total_count}) Anonymizing columns #{data[:columns].keys.inspect} from table '#{table}'"
+      process_table(table, data)
     end
   end
 
-  def process_table(table, columns)
+  def process_table(table, data)
+    columns = data[:columns]
     rows = @connection.query("SELECT id, #{columns.keys.join(', ')} FROM #{table}")
     pbar = ProgressBar.create(:format => '%a %B %c of %C', :total => rows.count) if @options[:progress]
     rows.each do |row|
