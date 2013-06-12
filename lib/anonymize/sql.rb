@@ -26,12 +26,20 @@ class Anonymize::SQL
     rows.each do |row|
       tuples = {}
       columns.each do |column, proc|
-        original = row[column.to_s]
-        replacement = if proc.arity == 1 then proc.call(original) else proc.call end
+        replacement = replacement(column, row, proc)
         tuples[column] = replacement if replacement
       end
       update_row(row["id"], table, tuples)
       pbar.increment if @options[:progress]
+    end
+  end
+
+  def replacement(column, row, proc)
+    original = row[column.to_s]
+    case proc.arity
+    when 1 then proc.call(original)
+    when 2 then proc.call(original, row)
+    else proc.call
     end
   end
 
