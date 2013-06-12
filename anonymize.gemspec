@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Anonymize::VERSION
   spec.authors       = ["Andrew Fecheyr"]
   spec.email         = ["andrew@bedesign.be"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{Anonymize database data on the fly}
+  spec.summary       = %q{Anonymize database data}
   spec.homepage      = ""
   spec.license       = "MIT"
 
