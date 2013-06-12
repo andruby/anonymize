@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["andrew@bedesign.be"]
   spec.description   = %q{Anonymize database data on the fly}
   spec.summary       = %q{Anonymize database data}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/andruby/anonymize"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
