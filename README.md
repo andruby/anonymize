@@ -1,6 +1,6 @@
 # Anonymize
 
-TODO: Write a gem description
+Ruby gem to anonymize database data.
 
 ## Installation
 
@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+See [the included example](https://github.com/andruby/anonymize/blob/master/examples/ssh_tunnel.rb) for usage information.
 
 ## Contributing
 
