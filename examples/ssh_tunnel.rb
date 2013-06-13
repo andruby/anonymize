@@ -25,7 +25,8 @@ Anonymize.define(connection, verbose: false, pretend: true, progress: true) do
   end
 
   # Using up to 5 retries to prevent uniqueness errors
-  table :users, retries: 5 do
+  # And a primary_key that is not "id"
+  table :users, retries: 5, primary_key: "user_id" do
     # Use a Proc with 2 arguments to the full row for simple conditionals
     column(:name) { |name, row| Faker::Name.name unless row["super_user"] == 1 }
     column(:email) { Faker::Internet.email }

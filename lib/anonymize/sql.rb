@@ -30,7 +30,7 @@ class Anonymize::SQL
         replacement = replacement(column, row, proc)
         tuples[column] = replacement if replacement
       end
-      update_row(row["id"], table, tuples, data[:options][:retries])
+      update_row(row, table, tuples, data[:options])
       pbar.increment if @options[:progress]
     end
   end
@@ -44,11 +44,12 @@ class Anonymize::SQL
     end
   end
 
-  def update_row(id, table, tuples, retries)
-    retries ||= 0
+  def update_row(row, table, tuples, table_options)
+    primary_key = table_options[:primary_key]
+    retries = table_options[:retries]
     if tuples.count > 0
       update_part = tuples.map { |column, value| "#{column} = \"#{@connection.escape(value)}\"" }
-      update_sql = "UPDATE #{table} SET #{update_part.join(', ')} WHERE id = #{id}"
+      update_sql = "UPDATE #{table} SET #{update_part.join(', ')} WHERE #{primary_key} = #{row[primary_key]}"
       puts update_sql if @options[:verbose]
       @connection.query(update_sql) unless @options[:pretend]
     end

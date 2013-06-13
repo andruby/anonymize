@@ -1,3 +1,8 @@
+v0.0.2 (unreleased)
+-------------
+
+* Support primary keys other than "id"
+
 v0.0.1 (2013-06-13)
 -------------
 

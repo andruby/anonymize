@@ -16,6 +16,7 @@ module Anonymize
 
     def table(table_name, options = {}, &block)
       @table_name = table_name
+      options = {:retries => 0, :primary_key => 'id'}.merge(options)
       self.definition[@table_name] = {columns: {}, options: options}
       class_eval &block
     end
