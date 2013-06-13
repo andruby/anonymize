@@ -3,6 +3,7 @@ require "anonymize/version"
 module Anonymize
   autoload :GoogleNews, 'anonymize/google_news'
   autoload :SQL, 'anonymize/sql'
+  autoload :Profile, 'anonymize/profile'
   class << self
     attr_accessor :definition, :connection, :options
 

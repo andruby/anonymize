@@ -2,6 +2,7 @@ v0.0.2 (unreleased)
 -------------
 
 * Support primary keys other than "id"
+* `Anonymize::Profile.introduction` anonymizer for funny user descriptions/introductions.
 
 v0.0.1 (2013-06-13)
 -------------
